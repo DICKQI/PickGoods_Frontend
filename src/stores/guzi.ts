@@ -45,10 +45,12 @@ export const useGuziStore = defineStore('guzi', () => {
         ? await getSimilarRandomGoodsList({
             ...filters.value,
             page: pagination.value.page,
+            page_size: pagination.value.page_size,
           })
         : await getGoodsList({
             ...filters.value,
             page: pagination.value.page,
+            page_size: pagination.value.page_size,
           })
 
       // 统一处理为扁平列表格式
@@ -73,7 +75,8 @@ export const useGuziStore = defineStore('guzi', () => {
           count = typeof responseObj.count === 'number' ? responseObj.count : results.length
           // 新格式：page、page_size、next、previous 都是数字或 null
           page = typeof responseObj.page === 'number' ? responseObj.page : pagination.value.page
-          page_size = typeof responseObj.page_size === 'number' ? responseObj.page_size : pagination.value.page_size
+          // page_size 以本地为准（后端可能不回传正确的值），不信任响应
+          page_size = pagination.value.page_size
           next = typeof responseObj.next === 'number' ? responseObj.next : (responseObj.next === null ? null : pagination.value.next)
           previous = typeof responseObj.previous === 'number' ? responseObj.previous : (responseObj.previous === null ? null : pagination.value.previous)
         }
@@ -144,6 +147,13 @@ export const useGuziStore = defineStore('guzi', () => {
     _searchGuzi(undefined, true) // keepPage = true，保持当前页码
   }
 
+  // 设置每页数量
+  function setPageSize(size: number) {
+    pagination.value.page_size = size
+    pagination.value.page = 1
+    _searchGuzi()
+  }
+
   // 立即搜索（用于首次加载）
   function searchGuziImmediate(params?: GoodsSearchParams) {
     return _searchGuzi(params)
@@ -168,6 +178,7 @@ export const useGuziStore = defineStore('guzi', () => {
     fetchGoodsDetail,
     resetFilters,
     setPage,
+    setPageSize,
     setViewMode,
   }
 })

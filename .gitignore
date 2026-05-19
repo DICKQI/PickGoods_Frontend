@@ -76,3 +76,4 @@ $RECYCLE.BIN/
 android/
 deploy.cjs
 .trae/
+.claude/

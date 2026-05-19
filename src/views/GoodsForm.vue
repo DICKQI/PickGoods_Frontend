@@ -507,7 +507,7 @@
                   :style="{ '--active-index': aspectRatios.findIndex(r => r.value === selectedAspectRatio) }"
                 ></div>
                 <button
-                  v-for="(ratio, idx) in aspectRatios"
+                  v-for="ratio in aspectRatios"
                   :key="ratio.value"
                   type="button"
                   class="ratio-segmented-item"

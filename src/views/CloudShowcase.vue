@@ -70,6 +70,20 @@
             @current-change="handlePageChange"
           />
         </div>
+        <div class="page-size-wrapper">
+          <el-select
+            v-model="pageSize"
+            class="page-size-select"
+            @change="handleSizeChange"
+          >
+            <el-option
+              v-for="size in [12, 18, 24, 30, 36, 42]"
+              :key="size"
+              :label="`${size}项/页`"
+              :value="size"
+            />
+          </el-select>
+        </div>
       </div>
 
       <!-- 详情抽屉 -->
@@ -174,6 +188,11 @@ const currentPage = computed({
   set: (val) => guziStore.setPage(val),
 })
 
+const pageSize = computed({
+  get: () => guziStore.pagination.page_size,
+  set: (val) => guziStore.setPageSize(val),
+})
+
 const totalPages = computed(() => {
   const size = guziStore.pagination.page_size || 1
   const total = guziStore.pagination.count || 0
@@ -225,6 +244,10 @@ const handleLocationClick = (path: string) => {
 
 const handlePageChange = (page: number) => {
   guziStore.setPage(page)
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const handleSizeChange = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
@@ -627,6 +650,7 @@ watch(
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 12px;
   padding: 12px 20px;
   z-index: 100;
   pointer-events: none; /* 让容器本身不拦截点击 */
@@ -651,6 +675,58 @@ watch(
   transform: translateY(-2px);
 }
 
+.page-size-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 8px 12px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1), 0 -2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  pointer-events: auto;
+  transition: all var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+}
+
+.page-size-select {
+  width: 90px;
+}
+
+/* 去掉 el-select 2.8.x 的边框（box-shadow inset 方式）和背景 */
+.page-size-select :deep(.el-select__wrapper) {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border-radius: 8px;
+  padding: 0 4px;
+  height: 32px;
+}
+
+/* 所有状态下都不显示框 */
+.page-size-select :deep(.el-select__wrapper.is-focused),
+.page-size-select :deep(.el-select__wrapper.is-hovering),
+.page-size-select :deep(.el-select__wrapper:hover) {
+  box-shadow: none !important;
+}
+
+.page-size-select :deep(.el-select__placeholder) {
+  color: var(--text-dark);
+}
+
+.page-size-select :deep(.el-select__caret) {
+  color: var(--text-secondary, #909399);
+}
+
+.page-size-select :deep(.el-select__selected-item) {
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.page-size-wrapper:hover {
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.12), 0 -4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
   .pagination-container {
     padding: 10px 16px;
@@ -671,6 +747,19 @@ watch(
     padding: 6px 10px;
     border-radius: 12px;
     /* 移除 width 设置，让分页器根据内容自适应宽度 */
+  }
+
+  .page-size-wrapper {
+    padding: 6px 10px;
+    border-radius: 12px;
+  }
+
+  .page-size-select {
+    width: 85px;
+  }
+
+  .page-size-select :deep(.el-select__selected-item) {
+    font-size: 13px;
   }
 
   /* 兼容不支持 safe-area-inset-bottom 的环境 */
