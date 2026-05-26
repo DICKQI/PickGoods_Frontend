@@ -248,7 +248,7 @@
                 </div>
 
                 <!-- 编辑模式：允许对原主图重新裁切/编辑 -->
-                <div v-if="route.params.id && (formData.main_photo || mainPhotoList.length)" class="main-photo-actions">
+                <div v-if="formData.main_photo || mainPhotoList.length" class="main-photo-actions">
                   <el-button size="small" :icon="Edit" @click="handleReEditMainPhoto">重新编辑主图</el-button>
                 </div>
 
