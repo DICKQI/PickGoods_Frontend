@@ -4217,12 +4217,13 @@ onUnmounted(() => {
 .crop-layout-inner {
   display: flex;
   gap: 18px;
+  max-height: calc(100vh - 260px);
 }
 
 .crop-left-panel {
   flex: 0 0 360px;
   min-width: 0;
-  max-height: 560px;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -4233,6 +4234,7 @@ onUnmounted(() => {
 .crop-right-panel {
   flex: 1;
   min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: row;
   gap: 14px;
