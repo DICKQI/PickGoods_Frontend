@@ -50,34 +50,34 @@
           </div>
           <div class="filter-item">
             <span class="filter-label">亮度</span>
-            <el-slider v-model="filterState.brightness" :min="0" :max="200" :format-tooltip="(val) => val + '%'" />
+            <el-slider v-model="filterState.brightness" :min="0" :max="200" :format-tooltip="(val: number) => val + '%'" />
             <span class="filter-value">{{ filterState.brightness }}%</span>
           </div>
           <div class="filter-item">
             <span class="filter-label">对比度</span>
-            <el-slider v-model="filterState.contrast" :min="0" :max="200" :format-tooltip="(val) => val + '%'" />
+            <el-slider v-model="filterState.contrast" :min="0" :max="200" :format-tooltip="(val: number) => val + '%'" />
             <span class="filter-value">{{ filterState.contrast }}%</span>
           </div>
           <div class="filter-item">
             <span class="filter-label">饱和度</span>
-            <el-slider v-model="filterState.saturation" :min="0" :max="200" :format-tooltip="(val) => val + '%'" />
+            <el-slider v-model="filterState.saturation" :min="0" :max="200" :format-tooltip="(val: number) => val + '%'" />
             <span class="filter-value">{{ filterState.saturation }}%</span>
           </div>
           <div class="filter-item">
             <span class="filter-label">旋转</span>
-            <el-slider v-model="filterState.rotation" :min="-180" :max="180" :format-tooltip="(val) => `${val}°`" />
+            <el-slider v-model="filterState.rotation" :min="-180" :max="180" :format-tooltip="(val: number) => `${val}°`" />
             <span class="filter-value">{{ filterState.rotation }}°</span>
           </div>
           <div class="perspective-panel">
             <div class="perspective-title">透视矫正</div>
             <div class="filter-item" style="margin-bottom: 10px;">
               <span class="filter-label">水平透视</span>
-              <el-slider v-model="filterState.perspectiveHorizontal" :min="-100" :max="100" :format-tooltip="(val) => val + '%'" />
+              <el-slider v-model="filterState.perspectiveHorizontal" :min="-100" :max="100" :format-tooltip="(val: number) => val + '%'" />
               <span class="filter-value">{{ filterState.perspectiveHorizontal > 0 ? '+' : '' }}{{ filterState.perspectiveHorizontal }}%</span>
             </div>
             <div class="filter-item" style="margin-bottom: 0;">
               <span class="filter-label">垂直透视</span>
-              <el-slider v-model="filterState.perspectiveVertical" :min="-100" :max="100" :format-tooltip="(val) => val + '%'" />
+              <el-slider v-model="filterState.perspectiveVertical" :min="-100" :max="100" :format-tooltip="(val: number) => val + '%'" />
               <span class="filter-value">{{ filterState.perspectiveVertical > 0 ? '+' : '' }}{{ filterState.perspectiveVertical }}%</span>
             </div>
           </div>
@@ -96,17 +96,17 @@
             <div class="hsl-sliders">
               <div class="filter-item">
                 <span class="filter-label">色相 (°)</span>
-                <el-slider v-model="filterState.hslAdjustments[activeHslColor].h" :min="-180" :max="180" :format-tooltip="(val) => val + '°'" />
+                <el-slider v-model="filterState.hslAdjustments[activeHslColor].h" :min="-180" :max="180" :format-tooltip="(val: number) => val + '°'" />
                 <span class="filter-value">{{ filterState.hslAdjustments[activeHslColor].h }}°</span>
               </div>
               <div class="filter-item">
                 <span class="filter-label">饱和度偏移</span>
-                <el-slider v-model="filterState.hslAdjustments[activeHslColor].s" :min="-100" :max="100" :format-tooltip="(val) => (val > 0 ? '+' : '') + val + '%'" />
+                <el-slider v-model="filterState.hslAdjustments[activeHslColor].s" :min="-100" :max="100" :format-tooltip="(val: number) => (val > 0 ? '+' : '') + val + '%'" />
                 <span class="filter-value">{{ filterState.hslAdjustments[activeHslColor].s > 0 ? '+' : '' }}{{ filterState.hslAdjustments[activeHslColor].s }}%</span>
               </div>
               <div class="filter-item">
                 <span class="filter-label">亮度偏移</span>
-                <el-slider v-model="filterState.hslAdjustments[activeHslColor].l" :min="-100" :max="100" :format-tooltip="(val) => (val > 0 ? '+' : '') + val + '%'" />
+                <el-slider v-model="filterState.hslAdjustments[activeHslColor].l" :min="-100" :max="100" :format-tooltip="(val: number) => (val > 0 ? '+' : '') + val + '%'" />
                 <span class="filter-value">{{ filterState.hslAdjustments[activeHslColor].l > 0 ? '+' : '' }}{{ filterState.hslAdjustments[activeHslColor].l }}%</span>
               </div>
             </div>
@@ -120,7 +120,7 @@
           </div>
           <div class="rounded-radius-row" :class="{ 'is-disabled': !enableRoundedRect }">
             <span class="rounded-label">圆角大小</span>
-            <el-slider v-model="roundedRadius" :min="0" :max="50" :disabled="!enableRoundedRect" :format-tooltip="(val) => val + '%'" />
+            <el-slider v-model="roundedRadius" :min="0" :max="50" :disabled="!enableRoundedRect" :format-tooltip="(val: number) => val + '%'" />
             <span class="rounded-value">{{ roundedRadius }}%</span>
           </div>
         </div>
@@ -132,7 +132,7 @@
           </div>
           <div class="rounded-radius-row" :class="{ 'is-disabled': !enableMargin }">
             <span class="rounded-label">边距大小</span>
-            <el-slider v-model="marginPercent" :min="0" :max="30" :disabled="!enableMargin" :format-tooltip="(val) => val + '%'" />
+            <el-slider v-model="marginPercent" :min="0" :max="30" :disabled="!enableMargin" :format-tooltip="(val: number) => val + '%'" />
             <span class="rounded-value">{{ marginPercent }}%</span>
           </div>
         </div>
@@ -214,34 +214,34 @@
               </div>
               <div class="filter-item">
                 <span class="filter-label">亮度</span>
-                <el-slider v-model="filterState.brightness" :min="0" :max="200" :format-tooltip="(val) => val + '%'" />
+                <el-slider v-model="filterState.brightness" :min="0" :max="200" :format-tooltip="(val: number) => val + '%'" />
                 <span class="filter-value">{{ filterState.brightness }}%</span>
               </div>
               <div class="filter-item">
                 <span class="filter-label">对比度</span>
-                <el-slider v-model="filterState.contrast" :min="0" :max="200" :format-tooltip="(val) => val + '%'" />
+                <el-slider v-model="filterState.contrast" :min="0" :max="200" :format-tooltip="(val: number) => val + '%'" />
                 <span class="filter-value">{{ filterState.contrast }}%</span>
               </div>
               <div class="filter-item">
                 <span class="filter-label">饱和度</span>
-                <el-slider v-model="filterState.saturation" :min="0" :max="200" :format-tooltip="(val) => val + '%'" />
+                <el-slider v-model="filterState.saturation" :min="0" :max="200" :format-tooltip="(val: number) => val + '%'" />
                 <span class="filter-value">{{ filterState.saturation }}%</span>
               </div>
               <div class="filter-item">
                 <span class="filter-label">旋转</span>
-                <el-slider v-model="filterState.rotation" :min="-180" :max="180" :format-tooltip="(val) => `${val}°`" />
+                <el-slider v-model="filterState.rotation" :min="-180" :max="180" :format-tooltip="(val: number) => `${val}°`" />
                 <span class="filter-value">{{ filterState.rotation }}°</span>
               </div>
               <div class="perspective-panel">
                 <div class="perspective-title">透视矫正</div>
                 <div class="filter-item" style="margin-bottom: 10px;">
                   <span class="filter-label">水平透视</span>
-                  <el-slider v-model="filterState.perspectiveHorizontal" :min="-100" :max="100" :format-tooltip="(val) => val + '%'" />
+                  <el-slider v-model="filterState.perspectiveHorizontal" :min="-100" :max="100" :format-tooltip="(val: number) => val + '%'" />
                   <span class="filter-value">{{ filterState.perspectiveHorizontal > 0 ? '+' : '' }}{{ filterState.perspectiveHorizontal }}%</span>
                 </div>
                 <div class="filter-item" style="margin-bottom: 0;">
                   <span class="filter-label">垂直透视</span>
-                  <el-slider v-model="filterState.perspectiveVertical" :min="-100" :max="100" :format-tooltip="(val) => val + '%'" />
+                  <el-slider v-model="filterState.perspectiveVertical" :min="-100" :max="100" :format-tooltip="(val: number) => val + '%'" />
                   <span class="filter-value">{{ filterState.perspectiveVertical > 0 ? '+' : '' }}{{ filterState.perspectiveVertical }}%</span>
                 </div>
               </div>
@@ -256,7 +256,7 @@
                 <div class="hsl-sliders">
                   <div class="filter-item">
                     <span class="filter-label">色相 (°)</span>
-                    <el-slider v-model="filterState.hslAdjustments[activeHslColor].h" :min="-180" :max="180" :format-tooltip="(val) => val + '°'" />
+                    <el-slider v-model="filterState.hslAdjustments[activeHslColor].h" :min="-180" :max="180" :format-tooltip="(val: number) => val + '°'" />
                     <span class="filter-value">{{ filterState.hslAdjustments[activeHslColor].h }}°</span>
                   </div>
                   <div class="filter-item">

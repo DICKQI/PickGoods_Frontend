@@ -1,10 +1,10 @@
-import { ref, computed } from 'vue'
+import { ref, computed, type Ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from 'element-plus'
 import { createGoods, updateGoods, getGoodsDetail, uploadMainPhoto } from '@/api/goods'
 import type { GoodsCreateResponse, GoodsDetail, GoodsInput, GoodsStatus } from '@/api/types'
 
-interface FormData {
+interface GoodsFormData {
   name: string
   ip: number | undefined
   characters: number[]
@@ -21,15 +21,15 @@ interface FormData {
 }
 
 export interface GoodsFormDeps {
-  formData: ReturnType<typeof ref<FormData>>
-  mainPhotoFile: ReturnType<typeof ref<File | null>>
-  newAdditionalPhotoFiles: ReturnType<typeof ref<any[]>>
+  formData: Ref<GoodsFormData>
+  mainPhotoFile: Ref<File | null>
+  newAdditionalPhotoFiles: Ref<any[]>
   ensureThemeCreated: () => Promise<number | null>
   handleAdditionalPhotosUpload: (id: string) => Promise<void>
   onDuplicateDetected: (candidates: any[], payload: GoodsInput) => void
 }
 
-const createDefaultFormData = (): FormData => ({
+const createDefaultFormData = (): GoodsFormData => ({
   name: '',
   ip: undefined,
   characters: [],

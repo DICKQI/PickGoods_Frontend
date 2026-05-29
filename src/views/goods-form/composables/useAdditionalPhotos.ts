@@ -1,7 +1,7 @@
 import { ref, type Ref } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox, type UploadFile } from 'element-plus'
 import { deleteAdditionalPhoto, updateAdditionalPhotoLabel, uploadAdditionalPhotos } from '@/api/goods'
-import type { UploadFile, GuziImage } from '@/api/types'
+import type { GuziImage } from '@/api/types'
 
 export interface NewPhotoFile {
   file: File
