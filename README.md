@@ -82,7 +82,7 @@
 ```bash
 # 1. 克隆项目
 git clone <repository-url>
-cd ShiGu_vue
+cd PickGoods_Frontend
 
 # 2. 安装依赖
 pnpm install
@@ -136,7 +136,7 @@ VITE_API_BASE_URL=http://127.0.0.1:8000
 ## 📁 项目结构
 
 ```
-ShiGu_vue/
+PickGoods_Frontend/
 ├── public/              # 静态资源目录
 ├── src/
 │   ├── api/            # API 接口层
